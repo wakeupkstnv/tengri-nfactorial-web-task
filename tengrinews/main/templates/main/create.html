@@ -1,0 +1,22 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+    Creaste Article
+{% endblock  %}
+
+{% block content %}
+
+        <h1>Форма по добавлению статьи</h1>
+        <form method="post" class="article-form">
+            {% csrf_token %}
+             {{ form.title }}<br>
+             {{ form.anons }}<br>
+             {{ form.full_text }}<br>
+             {{ form.date }}<br>
+             <span>{{ error }}</span>
+            <button class="btn btn-outline-success" type="submit">Добавить статью</button>
+        </form>
+
+
+{% endblock %}
+

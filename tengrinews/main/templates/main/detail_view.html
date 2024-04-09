@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+    detail view
+{% endblock  %}
+
+{% block content %}
+    <div class="features">
+        <h1>{{ news.title }}</h1>
+        <p>{{ news.date }}</p>
+        <p>{{ news.full_text }}</p>
+    </div>
+{% endblock %}
+

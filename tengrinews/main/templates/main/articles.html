@@ -1,0 +1,22 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+   Articles
+{% endblock  %}
+
+{% block content %}
+
+    {% if article %}
+        {% for el in article %}
+            <div class="article-container">
+                <div class="alert alert-primary" role="alert">
+                    <h3><b>{{ el.title }}</b></h3>
+                    <p class="text-border">{{ el.anons }}</p>
+                    <p>{{ el.date }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Лол новостей нету (такого быть не может по идее)</h1>
+    {% endif %}
+{% endblock %}

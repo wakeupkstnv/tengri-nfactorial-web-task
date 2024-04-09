@@ -1,0 +1,28 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Главная страница{% endblock  %}
+{% block content %}
+
+<form method="post" style="margin-top: -200px;" class="search-form">
+    {% csrf_token %}
+    <input type="search" placeholder="Поиск по темам..." class="form-control" name="text"><br>
+    <button class="btn btn-success" type="submit"  href="{% url "news_home" %}">Поиск</button>
+</form>
+
+<div class="features">
+    <h1>Новости по тегу "Спорт"</h1>
+</div>
+
+
+<div class="banners">
+    {% for el in news %}
+        <div class="alertss">
+                <img src="{{ el.image }}" class="rounded" alt="...">
+                <br>
+                <a href="{{ el.url }}">{{ el.title }}</a>
+                <p>Дата: {{ el.date_time }}</p>
+        </div>
+    {% endfor %}
+</div> 
+
+{% endblock %}
