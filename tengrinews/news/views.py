@@ -6,6 +6,11 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
+import openai
+
+openai_api = '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'
+op = openai.OpenAI(api_key=openai_api)
+
 HEADERS = {
 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
 "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36"
@@ -13,6 +18,7 @@ HEADERS = {
 DOMEN = "http://tengrinews.kz"
 URL = "https://tengrinews.kz/search/?text="
 post_text = None
+all_request = ""
 
 def get_response(url_def, headers_def=HEADERS):      
     # function to get response from server
@@ -57,11 +63,29 @@ def parser(search):
     soup = get_soup(response)
     return soup
 
+def response(text):
+    result = op.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Я даю тебе запросы пользователей новостного сайта, ты должен предугадать какие запросы могут заинтересовать меня в будущем отправляй чисто название запросов через запятую, кол-во запросов не больше 2-3 и короткие"},
+                {"role": "user", "content": text}
+            ],
+            temperature=1,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+    return result.choices[0].message.content
+
+
+
 def news_home(request):
-    global post_text
+    global post_text, all_request
     
     if request.method == 'POST' and post_text:
         post_text = request.POST.get('text')
+        all_request += post_text + ', '
     else:
         post_text = 'Алматы'
 
@@ -74,5 +98,6 @@ def news_home(request):
     context = {
         'news': page_obj,
         'name': post_text,
+        'recomendation': response(all_request)
     }
     return render(request, 'main/news_home.html', context)
