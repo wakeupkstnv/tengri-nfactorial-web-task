@@ -345,3 +345,12 @@ form {
     border-radius: 5px; 
 }
 
+.modal-content {
+    background: #ffffff;
+}
+
+a:hover, a:focus {
+    border-bottom: none !important; 
+    text-decoration: none !important; 
+}
+
