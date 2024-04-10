@@ -56,8 +56,8 @@ cd tengrinews
 Для пользователей Windows
 ```sh
 pip install -r requirements.txt
-
 ```
+
 Для пользователей MacOs
 ```sh
 pip3 install -r requirements.txt
@@ -67,13 +67,13 @@ pip3 install -r requirements.txt
 Для пользователей Windows
 
 ```sh
-python3 manage.py runserver
+python manage.py runserver
 
 ```
 Для пользователей MacOs
 
 ```sh
-python api.py
+python3 manage.py runserver
 ```
 
 
