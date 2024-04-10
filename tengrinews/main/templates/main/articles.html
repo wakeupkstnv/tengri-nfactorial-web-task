@@ -6,17 +6,43 @@
 
 {% block content %}
 
-    {% if article %}
-        {% for el in article %}
-            <div class="article-container">
-                <div class="alert alert-primary" role="alert">
-                    <h3><b>{{ el.title }}</b></h3>
-                    <p class="text-border">{{ el.anons }}</p>
-                    <p>{{ el.date }}</p>
-                </div>
+{% for el in article %}
+    <div class="article-container" data-toggle="modal" data-target="#articleModal" data-article-id="{{ el.id }}" data-article-fulltext="{{ el.full_text|escape }}">
+        <div class="alert alert-primary" role="alert">
+            <h3><b>{{ el.title }}</b></h3>
+            <p class="text-border">{{ el.anons }}</p>
+            <p>{{ el.date }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="articleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        {% endfor %}
-    {% else %}
-        <h1>Лол новостей нету (такого быть не может по идее)</h1>
-    {% endif %}
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.article-container').click(function() {
+            var articleTitle = $(this).find('h3').text();
+            var articleFullText = $(this).data('article-fulltext');
+
+            $('#articleModalLabel').text(articleTitle);
+            $('#articleModal .modal-body').html("<p>" + articleFullText + "</p>");
+
+            $('#articleModal').modal('show');
+        });
+    });
+</script>
 {% endblock %}
