@@ -3,6 +3,7 @@
 
 # Nfactorial Incubator task
 ![nfactoiral](https://www.petroleumjournal.kz/imgdb/release/release_21_0_1244_1444.jpg)
+<br>
 Добро пожаловать в проект "TNEWS"!
 
 
