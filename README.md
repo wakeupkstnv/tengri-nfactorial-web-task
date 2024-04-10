@@ -2,7 +2,7 @@
 
 
 # Nfactorial Incubator task
-![nfactoiral](https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-dsc/events/download%20%281%29_NyrtY6R.png)
+![nfactoiral](https://www.petroleumjournal.kz/imgdb/release/release_21_0_1244_1444.jpg)
 Добро пожаловать в проект "TNEWS"!
 
 
